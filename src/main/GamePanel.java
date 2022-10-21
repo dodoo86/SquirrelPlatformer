@@ -27,6 +27,7 @@ public class GamePanel extends JPanel {
 	private boolean moving = false;
 
 	public GamePanel() {
+		
 		mouseInputs = new MouseInputs(this);
 		importImg();
 		loadAnimations();
@@ -38,6 +39,7 @@ public class GamePanel extends JPanel {
 	
 	
 	private void loadAnimations() {
+		
 		animations = new BufferedImage[9][6];
 		
 		for(int j = 0; j < animations.length; j++)
@@ -48,6 +50,7 @@ public class GamePanel extends JPanel {
 
 
 	private void importImg() {
+		
 		InputStream is = getClass().getResourceAsStream("/player_sprites.png");
 		
 		try {
@@ -67,12 +70,14 @@ public class GamePanel extends JPanel {
 
 
 	private void setPanelSize() {
+		
 		Dimension size = new Dimension(1280, 800);
 		setPreferredSize(size);
 				
 	}
 	
 	public void setDirection(int direction) {
+		
 		this.playerDir = direction;
 		moving = true;
 	}
@@ -122,13 +127,16 @@ public class GamePanel extends JPanel {
 		}		
 	}
 	
-	public void paintComponent(Graphics g) {
-		super.paintComponent(g);
+	public void updateGame() {
 		
 		updateAnimationTick();
-		
 		setAnimation();
 		updatePos();
+	}
+	
+	public void paintComponent(Graphics g) {
+		
+		super.paintComponent(g);
 		
 		g.drawImage(animations[playerAction][aniIndex], (int)xDelta, (int)yDelta, 256, 160, null);
 	}
