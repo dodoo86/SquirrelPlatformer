@@ -8,4 +8,7 @@ public abstract class Entity {
 		this.y = y;
 		
 	}
+	public Entity(float x2, float y2, int width, int height) {
+		// TODO Auto-generated constructor stub
+	}
 }
