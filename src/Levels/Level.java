@@ -10,6 +10,12 @@ public class Level {
 	
 	public int getSriteindex(int x, int y) {
 		return lvlData[y][x];
+		
+	}
+	
+	public int[][] getLevelData() {
+		
+		return lvlData;
 	}
 	
 }
