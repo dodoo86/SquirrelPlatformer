@@ -29,18 +29,22 @@ public class Playing extends State implements Statemethods{
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
+		
+		levelManager.update();
+		player.update();
 		
 	}
 
 	@Override
 	public void draw(Graphics g) {
-		// TODO Auto-generated method stub
+		
+		levelManager.draw(g);
+		player.render(g);
 		
 	}
 
 	@Override
-	public void mosueClicked(MouseEvent e) {
+	public void mouseClicked(MouseEvent e) {
 		
 		if(e.getButton() == MouseEvent.BUTTON1) {
 			player.setAttacking(true);

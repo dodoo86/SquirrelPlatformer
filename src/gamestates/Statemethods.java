@@ -10,7 +10,7 @@ public interface Statemethods {
 	
 	public void draw(Graphics g);
 	
-	public void mosueClicked(MouseEvent e);
+	public void mouseClicked(MouseEvent e);
 	
 	public void mousePressed(MouseEvent e);
 	

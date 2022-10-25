@@ -26,7 +26,7 @@ public class Menu extends State implements Statemethods {
 	}
 
 	@Override
-	public void mosueClicked(MouseEvent e) {
+	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}

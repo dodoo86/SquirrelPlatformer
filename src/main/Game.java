@@ -125,4 +125,13 @@ public class Game implements Runnable {
 	public void windowFocusLost() {
 		
 	}
+	
+	public Menu getMenu() {
+		return menu;
+	}
+	
+	public Playing getPlaying() {
+		return playing;
+	}
+	
 }
