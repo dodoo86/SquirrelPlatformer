@@ -10,6 +10,7 @@ import main.Game;
 import utilz.LoadSave;
 import static utilz.Constants.UI.PauseButtons.*;
 import static utilz.Constants.UI.URMButtons.*;
+import static utilz.Constants.UI.VolumeButtons.*;
 
 public class PauseOverlay {
 	
@@ -18,6 +19,7 @@ public class PauseOverlay {
 	private int bgX, bgY, bgW, bgH;
 	private SoundButton musicButton, sfxButton;
 	private UrmButtons menuB, replayB, unpauseB;
+	private VolumeButton volumeButton;
 
 	public PauseOverlay(Playing playing) {
 		
@@ -25,8 +27,16 @@ public class PauseOverlay {
 		loadBackgroud();
 		createSoundButtons();
 		createUrmButtons();
+		createVolumeButton();
 	}
 	
+	private void createVolumeButton() {
+		
+		int vX = (int) (309 * Game.SCALE);
+		int vY = (int) (278 * Game.SCALE);
+		volumeButton = new VolumeButton(vX, vY, SLIDER_WIDTH, VOLUME_HEIGHT);
+	}
+
 	private void createUrmButtons() {
 		
 		int menuX = (int) (313 * Game.SCALE);
@@ -68,6 +78,7 @@ public class PauseOverlay {
 		menuB.update();
 		replayB.update();
 		unpauseB.update();
+		volumeButton.update();
 		
 	}
 	
@@ -84,6 +95,8 @@ public class PauseOverlay {
 		replayB.draw(g);
 		unpauseB.draw(g);
 		
+		//Volume Slider
+		volumeButton.draw(g);
 		
 	}
 	
@@ -121,6 +134,7 @@ public class PauseOverlay {
 		} else if (isIn(e, menuB)) {
 			if(menuB.isMousePressed()) {
 				Gamestate.state = Gamestate.MENU;
+				playing.unpauseGame();
 				menuB.resetBools();
 			}
 		} else if (isIn(e, replayB)) {
