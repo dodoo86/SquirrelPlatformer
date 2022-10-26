@@ -76,6 +76,10 @@ public class MenuButton {
 		this.mousePressed = mousePressed;
 	}	
 	
+	public Rectangle getBounds() {
+		return bounds;
+	}
+	
 	public void applyGamestate() {
 		Gamestate.state = state;
 	}
