@@ -7,12 +7,14 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 import Levels.LevelManager;
+import Ui.PauseOverlay;
 import main.Game;
 
 public class Playing extends State implements Statemethods{
 	
 	private Player player;
 	private LevelManager levelManager;
+	private PauseOverlay pauseOverlay;
 	private boolean paused;
 	
 	public Playing(Game game) {
@@ -25,6 +27,7 @@ public class Playing extends State implements Statemethods{
 		levelManager = new LevelManager(game);
 		player = new Player(200, 200, (int) (64 * Game.SCALE), (int) (40 * Game.SCALE));
 		player.loadLvlData(levelManager.getCurrentLevel().getLevelData());
+		pauseOverlay = new PauseOverlay();
 		
 	}
 
@@ -41,6 +44,8 @@ public class Playing extends State implements Statemethods{
 		
 		levelManager.draw(g);
 		player.render(g);
+		
+		pauseOverlay.draw(g);
 		
 	}
 
