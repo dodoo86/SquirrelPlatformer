@@ -12,6 +12,7 @@ import Levels.LevelManager;
 import Ui.PauseOverlay;
 import main.Game;
 import utilz.LoadSave;
+import static utilz.Constants.Environment.*;
 
 public class Playing extends State implements Statemethods{
 	
@@ -28,13 +29,15 @@ public class Playing extends State implements Statemethods{
 	private int maxTilesOffset = lvlTilesWide - Game.TILES_IN_WIDTH;
 	private int maxLvlOffsetX = maxTilesOffset * Game.TILES_SIZE;
 	
-	private BufferedImage backgroundImg;
+	private BufferedImage backgroundImg, bigCloud;
 	
 	public Playing(Game game) {
 		super(game);
 		initClasses();
 		
 		backgroundImg = LoadSave.GetSpriteAtlas(LoadSave.PLAYING_BG_IMG);
+		bigCloud = LoadSave.GetSpriteAtlas(LoadSave.BIG_CLOUDS);
+		
 	}	
 	
 	private void initClasses() {
@@ -82,6 +85,8 @@ public class Playing extends State implements Statemethods{
 		
 		g.drawImage(backgroundImg, 0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT, null);
 		
+		drawClouds(g);
+		
 		levelManager.draw(g, xLvlOffset);
 		player.render(g, xLvlOffset);
 		
@@ -91,6 +96,13 @@ public class Playing extends State implements Statemethods{
 			g.fillRect(0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT);
 			pauseOverlay.draw(g);
 		}
+	}
+
+	private void drawClouds(Graphics g) {
+
+		for(int i = 0; i < 3; i++)
+		g.drawImage(bigCloud, 0 + i * BIG_CLOUD_WIDTH, (int)(204 * Game.SCALE), BIG_CLOUD_WIDTH, BIG_CLOUD_HEIGHT, null);
+		
 	}
 
 	@Override
