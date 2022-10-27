@@ -9,6 +9,7 @@ import java.awt.event.MouseEvent;
 import Levels.LevelManager;
 import Ui.PauseOverlay;
 import main.Game;
+import utilz.LoadSave;
 
 public class Playing extends State implements Statemethods{
 	
@@ -16,6 +17,14 @@ public class Playing extends State implements Statemethods{
 	private LevelManager levelManager;
 	private PauseOverlay pauseOverlay;
 	private boolean paused = false;
+	
+	private int xLvlOffset;
+	//Change this so camera move sooner ...
+	private int leftBoarder = (int) (0.2 * Game.GAME_WIDTH);
+	private int rightBoarder = (int) (0.8 * Game.GAME_WIDTH);
+	private int lvlTilesWide = LoadSave.GetLevelData()[0].length;
+	private int maxTilesOffset = lvlTilesWide - Game.TILES_IN_WIDTH;
+	private int maxLvlOffsetX = maxTilesOffset * Game.TILES_SIZE;
 	
 	public Playing(Game game) {
 		super(game);
