@@ -8,7 +8,7 @@ public abstract class Enemy extends Entity {
 
 	public Enemy(float x, float y, int width, int height, int enemyType) {
 		super(x, y, width, height);
-		this.enemytype = enemyType;
+		this.enemyType = enemyType;
 		initHitbox(x, y, height, height );
 		
 	}
