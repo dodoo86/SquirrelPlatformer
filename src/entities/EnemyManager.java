@@ -38,7 +38,7 @@ public class EnemyManager {
 		for (Crabby c : crabbies) {
 			g.drawImage(crabbyArr[c.getEnemyState()][c.getAniIndex()], (int) c.gethitbox().x - xLvlOffset - CRABBY_DRAWOFFSET_X, (int) c.gethitbox().y - CRABBY_DRAWOFFSET_Y, CRABBY_WIDTH,
 					CRABBY_HEIGHT, null);
-//			c.drawHitbox(g, xLvlOffset);
+			c.drawHitbox(g, xLvlOffset);
 		}
 
 	}

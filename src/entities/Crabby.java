@@ -1,6 +1,11 @@
 package entities;
 
+import static utilz.Constants.Directions.LEFT;
 import static utilz.Constants.EnemyConstants.*;
+import static utilz.HelpMethods.CanMovehere;
+import static utilz.HelpMethods.GetEntityYPosUnderRoofOrAboveFloor;
+import static utilz.HelpMethods.IsEntityOnFloor;
+import static utilz.HelpMethods.IsFloor;
 
 import main.Game;
 
@@ -12,4 +17,30 @@ public class Crabby extends Enemy {
 
 	}
 
+	public void update(int[][] lvlData) {
+		updateMove(lvlData);
+		updateAnimationTick();
+
+	}
+	
+	private void updateMove(int[][] lvlData) {
+		
+		if (firstUpdate) 
+			firstUpdateCheck(lvlData);
+
+		if (inAir) 
+			updateInAir(lvlData);
+		 else {
+			switch (enemyState) {
+			case IDLE:
+				newState(RUNNING);
+				break;
+			case RUNNING:
+				move(lvlData);
+				break;
+			}
+		}
+
+	}
+	
 }
