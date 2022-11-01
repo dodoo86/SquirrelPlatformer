@@ -118,6 +118,10 @@ public class Playing extends State implements Statemethods{
 		for(int i = 0; i < smallCloudsPos.length; i++)
 		g.drawImage(smallCloud, SMALL_CLOUD_WIDTH * 4 * i - (int)(xLvlOffset * 0.7), smallCloudsPos[i], SMALL_CLOUD_WIDTH, SMALL_CLOUD_HEIGHT, null);
 	}
+	
+	public void resetAll() {
+		//TODO: reset playing, enemy etc...
+	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
