@@ -145,7 +145,10 @@ public class PauseOverlay {
 			}
 		} else if (isIn(e, replayB)) {
 			if(replayB.isMousePressed()) {
-				System.out.println("Replay Level !");
+				{
+					playing.resetAll();
+					playing.unpauseGame();
+				}
 				replayB.resetBools();
 			}
 		} else if (isIn(e, unpauseB)) {

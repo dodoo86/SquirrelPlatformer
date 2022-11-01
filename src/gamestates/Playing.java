@@ -218,6 +218,9 @@ public class Playing extends State implements Statemethods{
 		case KeyEvent.VK_ESCAPE :
 			paused = !paused;
 			break;
+		case KeyEvent.VK_ENTER:
+			player.setAttacking(true);
+			break;
 		}
 		
 	}
@@ -242,6 +245,9 @@ public class Playing extends State implements Statemethods{
 			break;
 		case KeyEvent.VK_SPACE:
 			player.setJump(false);
+			break;
+		case KeyEvent.VK_ENTER:
+			player.setAttacking(false);
 			break;
 		}
 		
