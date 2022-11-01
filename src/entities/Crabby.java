@@ -1,11 +1,13 @@
 package entities;
 
 import static utilz.Constants.Directions.LEFT;
+
 import static utilz.Constants.EnemyConstants.*;
 import static utilz.HelpMethods.CanMovehere;
 import static utilz.HelpMethods.GetEntityYPosUnderRoofOrAboveFloor;
 import static utilz.HelpMethods.IsEntityOnFloor;
 import static utilz.HelpMethods.IsFloor;
+import static utilz.Constants.Directions.*;
 
 import main.Game;
 
@@ -49,4 +51,21 @@ public class Crabby extends Enemy {
 
 	}
 	
+	public int flipX() {
+		
+		if(walkDir == RIGHT)
+			return width;
+		else 
+			return 0;
+		
+	}
+	
+	public int flipW() {
+		
+		if(walkDir == RIGHT)
+			return -1;
+		else
+			return 1;
+		
+	}
 }
