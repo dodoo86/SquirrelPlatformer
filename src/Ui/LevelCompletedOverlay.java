@@ -1,5 +1,7 @@
 package Ui;
 
+import java.awt.Graphics;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
 import gamestates.Playing;
@@ -37,6 +39,30 @@ public class LevelCompletedOverlay {
 		bgH = (int) (img.getHeight() * Game.SCALE);
 		bgX = Game.GAME_WIDTH / 2 - bgW / 2;
 		bgY = (int) (75 * Game.SCALE);
+		
+	}
+	
+	public void draw(Graphics g) {
+		
+		g.drawImage(img,  bgX,  bgY,  bgW,  bgH,  null);
+		next.draw(g);
+		menu.draw(g);
+		
+	}
+	
+	public void update() {
+		
+	}		
+	
+	public void mouseMoved(MouseEvent e) {
+		
+	}
+	
+	public void mouseReleased(MouseEvent e) {
+		
+	}
+	
+	public void mousePressed(MouseEvent e) {
 		
 	}
 	
