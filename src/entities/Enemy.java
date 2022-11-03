@@ -27,6 +27,7 @@ public abstract class Enemy extends Entity {
 		initHitbox(x, y, width, height);
 		maxHealth = GetMaxHealth(enemyType);
 		currentHealth = maxHealth;
+		walkSpeed = Game.SCALE * 0.35f;
 
 	}
 	

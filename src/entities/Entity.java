@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.geom.Rectangle2D;
 
+import main.Game;
+
 public abstract class Entity {
 
 	protected float x, y;
@@ -14,8 +16,11 @@ public abstract class Entity {
 	protected float airSpeed;
 	protected boolean inAir = false;
 	
-	protected int maxHealth = 100;
-	protected int currentHealth = maxHealth;
+	protected int maxHealth;
+	protected int currentHealth;
+	protected float walkSpeed = 1.0f * Game.SCALE;
+
+	protected Rectangle2D.Float attackBox;
 
 	public Entity(float x, float y, int width, int height) {
 		this.x = x;

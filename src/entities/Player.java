@@ -19,7 +19,6 @@ public class Player extends Entity {
 	private BufferedImage[][] animations;
 	private boolean moving = false, attacking = false;
 	private boolean left, right, jump;
-	private float playerSpeed = 1.0f * Game.SCALE;
 	private int[][] lvlData;
 	private float xDrawOffset = 21 * Game.SCALE;
 	private float yDrawOffset = 4 * Game.SCALE;
@@ -45,9 +44,6 @@ public class Player extends Entity {
 	
 	private int healthWidth = healthBarWidth;
 	
-	//AttackBox
-	private Rectangle2D.Float attackBox;
-	
 	private int flipX = 0;
 	private int flipW = 1;
 	
@@ -59,6 +55,9 @@ public class Player extends Entity {
 		super(x, y, width, height);
 		this.playing = playing;
 		this.state = IDLE;
+		this.maxHealth = 100;
+		this.currentHealth = maxHealth;
+		this.walkSpeed = Game.SCALE * 1.0f;
 		loadAnimations();
 		initHitbox(x, y,(int) (20 * Game.SCALE),(int) (27 * Game.SCALE));
 		initAttackBox();
@@ -209,12 +208,12 @@ public class Player extends Entity {
 		float xSpeed = 0;
 
 		if (left) {
-			xSpeed -= playerSpeed;		
+			xSpeed -= walkSpeed;		
 			flipX = width;
 			flipW = -1;
 		}
 		if (right) {
-			xSpeed += playerSpeed;	
+			xSpeed += walkSpeed;	
 			flipX = 0;
 			flipW = 1;
 		}
