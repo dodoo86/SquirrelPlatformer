@@ -36,9 +36,17 @@ public abstract class Entity {
 		g.drawRect((int) hitbox.x - xLvlOffset, (int) hitbox.y, (int) hitbox.width, (int) hitbox.height);
 	}
 
-	protected void initHitbox(float x, float y, int width, int height) {
+
+	protected void drawAttackBox(Graphics g, int lvlOffsetX) {
+
+		g.setColor(Color.red);
+		g.drawRect((int)attackBox.x - lvlOffsetX, (int)attackBox.y, (int)attackBox.width, (int)attackBox.height);
 		
-		hitbox = new Rectangle2D.Float( x, y, width, height);
+	}
+	
+	protected void initHitbox(int width, int height) {
+		
+		hitbox = new Rectangle2D.Float( x, y,(int) (width * Game.SCALE), (int) (height * Game.SCALE));
 		
 	}
 	/*
@@ -56,4 +64,10 @@ public abstract class Entity {
 	public int getState() {
 		return state;
 	}
+	
+	
+	public int getAniIndex() {
+		return aniIndex;
+	}
+	
 }

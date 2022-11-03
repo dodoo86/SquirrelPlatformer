@@ -59,7 +59,7 @@ public class Player extends Entity {
 		this.currentHealth = maxHealth;
 		this.walkSpeed = Game.SCALE * 1.0f;
 		loadAnimations();
-		initHitbox(x, y,(int) (20 * Game.SCALE),(int) (27 * Game.SCALE));
+		initHitbox(20, 27);
 		initAttackBox();
 		
 	}
@@ -127,13 +127,6 @@ public class Player extends Entity {
 		//drawHitbox(g , lvlOffset);
 		//drawAttackBox(g, lvlOffset);
 		drawUI(g);
-		
-	}
-
-	private void drawAttackBox(Graphics g, int lvlOffsetX) {
-
-		g.setColor(Color.red);
-		g.drawRect((int)attackBox.x - lvlOffsetX, (int)attackBox.y, (int)attackBox.width, (int)attackBox.height);
 		
 	}
 
