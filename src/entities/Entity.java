@@ -11,6 +11,7 @@ public abstract class Entity {
 	protected Rectangle2D.Float hitbox;
 	protected int aniTick, aniIndex;
 	protected int state;
+	protected float airSpeed;
 
 	public Entity(float x, float y, int width, int height) {
 		this.x = x;
@@ -41,5 +42,9 @@ public abstract class Entity {
 	public Rectangle2D.Float gethitbox() {
 		
 		return hitbox;
+	}
+
+	public int getState() {
+		return state;
 	}
 }

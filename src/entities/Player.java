@@ -18,14 +18,14 @@ public class Player extends Entity {
 	
 	private BufferedImage[][] animations;
 	private boolean moving = false, attacking = false;
-	private boolean left, up, right, down, jump;
+	private boolean left, right, jump;
 	private float playerSpeed = 1.0f * Game.SCALE;
 	private int[][] lvlData;
 	private float xDrawOffset = 21 * Game.SCALE;
 	private float yDrawOffset = 4 * Game.SCALE;
 	
 	//Jumping / Gravity
-	private float airSpeed = 0f;
+	
 	private float jumpSpeed = -2.25f * Game.SCALE;
 	private float fallSpeedAfterCollision = 0.5f * Game.SCALE;
 	private boolean inAir = false;
@@ -307,8 +307,6 @@ public class Player extends Entity {
 	public void resetDirBooleans() {
 		left = false;
 		right = false;
-		up = false;
-		down = false;
 	}
 
 	public void setAttacking(boolean attacking) {
@@ -323,28 +321,12 @@ public class Player extends Entity {
 		this.left = left;
 	}
 
-	public boolean isUp() {
-		return up;
-	}
-
-	public void setUp(boolean up) {
-		this.up = up;
-	}
-
 	public boolean isRight() {
 		return right;
 	}
 
 	public void setRight(boolean right) {
 		this.right = right;
-	}
-
-	public boolean isDown() {
-		return down;
-	}
-
-	public void setDown(boolean down) {
-		this.down = down;
 	}
 	
 	public boolean isJump() {

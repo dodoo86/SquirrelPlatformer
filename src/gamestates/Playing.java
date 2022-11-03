@@ -238,14 +238,14 @@ public class Playing extends State implements Statemethods{
 		else
 		switch(e.getKeyCode()) {
 		case KeyEvent.VK_W:
-			player.setUp(true);
+			
 			player.setJump(true);
 			break;
 		case KeyEvent.VK_A:
 			player.setLeft(true);
 			break;
 		case KeyEvent.VK_S:
-			player.setDown(true);
+			
 			break;
 		case KeyEvent.VK_D:
 			player.setRight(true);
@@ -270,13 +270,13 @@ public class Playing extends State implements Statemethods{
 		switch(e.getKeyCode()) {
 		case KeyEvent.VK_W:
 			player.setJump(false);
-			player.setUp(false);
+			
 			break;
 		case KeyEvent.VK_A:
 			player.setLeft(false);
 			break;
 		case KeyEvent.VK_S:
-			player.setDown(false);
+			
 			break;
 		case KeyEvent.VK_D:
 			player.setRight(false);

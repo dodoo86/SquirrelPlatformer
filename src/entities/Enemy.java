@@ -14,8 +14,7 @@ import main.Game;
 public abstract class Enemy extends Entity {
 	protected int enemyType;
 	protected boolean firstUpdate = true;
-	protected boolean inAir;
-	protected float fallSpeed;	
+	protected boolean inAir;	
 	protected float walkSpeed = 0.35f * Game.SCALE;
 	protected int walkDir = LEFT;
 	protected int tileY;
@@ -44,12 +43,12 @@ public abstract class Enemy extends Entity {
 	
 	protected void updateInAir(int[][] lvlData) {
 		
-		if (CanMovehere(hitbox.x, hitbox.y + fallSpeed, hitbox.width, hitbox.height, lvlData)) {
-			hitbox.y += fallSpeed;
-			fallSpeed += GRAVITY;
+		if (CanMovehere(hitbox.x, hitbox.y + airSpeed, hitbox.width, hitbox.height, lvlData)) {
+			hitbox.y += airSpeed;
+			airSpeed += GRAVITY;
 		} else {
 			inAir = false;
-			hitbox.y = GetEntityYPosUnderRoofOrAboveFloor(hitbox, fallSpeed);
+			hitbox.y = GetEntityYPosUnderRoofOrAboveFloor(hitbox, airSpeed);
 			tileY = (int) (hitbox.y / Game.TILES_SIZE);
 		}		
 	}
@@ -163,16 +162,12 @@ public abstract class Enemy extends Entity {
 		currentHealth = maxHealth;
 		newState(IDLE);
 		active = true;
-		fallSpeed = 0;
+		airSpeed = 0;
 		
 	}
 	
 	public int getAniIndex() {
 		return aniIndex;
-	}
-
-	public int getEnemyState() {
-		return state;
 	}
 
 	public boolean isActive() {
