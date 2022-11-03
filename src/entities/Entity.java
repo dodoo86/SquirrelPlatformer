@@ -12,6 +12,10 @@ public abstract class Entity {
 	protected int aniTick, aniIndex;
 	protected int state;
 	protected float airSpeed;
+	protected boolean inAir = false;
+	
+	protected int maxHealth = 100;
+	protected int currentHealth = maxHealth;
 
 	public Entity(float x, float y, int width, int height) {
 		this.x = x;

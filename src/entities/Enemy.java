@@ -13,14 +13,11 @@ import main.Game;
 
 public abstract class Enemy extends Entity {
 	protected int enemyType;
-	protected boolean firstUpdate = true;
-	protected boolean inAir;	
+	protected boolean firstUpdate = true;	
 	protected float walkSpeed = 0.35f * Game.SCALE;
 	protected int walkDir = LEFT;
 	protected int tileY;
 	protected float attackDistance = Game.TILES_SIZE;
-	protected int maxHealth;
-	protected int currentHealth;
 	protected boolean active = true;
 	protected boolean attackChecked;
 
