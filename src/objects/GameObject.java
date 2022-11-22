@@ -1,11 +1,7 @@
 package objects;
 
 import static utilz.Constants.ANI_SPEED;
-import static utilz.Constants.EnemyConstants.ATTACK;
-import static utilz.Constants.EnemyConstants.DEAD;
-import static utilz.Constants.EnemyConstants.GetSpriteAmount;
-import static utilz.Constants.EnemyConstants.HIT;
-import static utilz.Constants.EnemyConstants.IDLE;
+import static utilz.Constants.ObjectConstants.*;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -36,7 +32,10 @@ public class GameObject {
 			aniIndex++;
 			if (aniIndex >= GetSpriteAmount(objType)) {
 				aniIndex = 0;
-				
+				if(objType == BARREL || objType == BOX) {
+					doAnimation = false;
+					active = false;
+				}
 			}
 		}
 	}
@@ -47,8 +46,10 @@ public class GameObject {
 		aniTick = 0;
 		active = true;
 		
-		//TODO: add if here
-		doAnimation = true;
+		if(objType == BARREL || objType == BOX)
+			doAnimation = false;
+		else
+			doAnimation = true;
 		
 	}
 	
