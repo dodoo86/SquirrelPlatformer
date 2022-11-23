@@ -201,14 +201,9 @@ public class Playing extends State implements Statemethods{
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		
-		if(!gameOver)
-		if(e.getButton() == MouseEvent.BUTTON1) {
-			player.setAttacking(true);
-		}
-
-		
 	}
-
+	
+	
 	public void mouseDragged(MouseEvent e) {
 		
 		if(!gameOver)
@@ -220,6 +215,9 @@ public class Playing extends State implements Statemethods{
 	public void mousePressed(MouseEvent e) {
 		
 		if(!gameOver) {
+		if(e.getButton() == MouseEvent.BUTTON1) {
+			player.setAttacking(true);
+			}
 		if(paused)
 			pauseOverlay.mousePressed(e);
 		else if (lvlCompleted)
@@ -343,6 +341,12 @@ public class Playing extends State implements Statemethods{
 	public void setMaxLvlOffset(int lvlOffset) {
 		
 		this.maxLvlOffsetX = lvlOffset;
+		
+	}
+	
+	public LevelManager getLevelManager() {
+		
+		return levelManager;
 		
 	}
 	
