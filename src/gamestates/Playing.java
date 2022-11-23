@@ -198,6 +198,12 @@ public class Playing extends State implements Statemethods{
 		
 	}
 	
+	public void checkSpikesTouched(Player p) {
+		
+		objectManager.checkSpikesTouched(p);
+		
+	}
+	
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		
@@ -348,6 +354,5 @@ public class Playing extends State implements Statemethods{
 		
 		return levelManager;
 		
-	}
-	
+	}	
 }

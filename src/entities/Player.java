@@ -81,6 +81,7 @@ public class Player extends Entity {
 	public void update() {
 		
 		updateHealthBar();
+		
 		if(currentHealth <= 0) {
 			playing.setGameOver(true);
 			return;
@@ -89,12 +90,20 @@ public class Player extends Entity {
 		updateAttackBox();
 		
 		updatePos();
-		if(moving)
+		if(moving) {
 			checkPotionTouched();
+			checkSpikesTouched();
+		}
 		if(attacking)
 			checkAttack();
 		updateAnimationTick();
 		setAnimation();
+		
+	}
+
+	private void checkSpikesTouched() {
+		
+		playing.checkSpikesTouched(this);
 		
 	}
 
@@ -281,6 +290,12 @@ public class Player extends Entity {
 			currentHealth = maxHealth;
 	}
 	
+	public void kill() {
+		
+		currentHealth = 0;
+		
+	}
+	
 	public void changePower(int value) {
 		
 		System.out.println("Added Power!!! ");
@@ -356,5 +371,4 @@ public class Player extends Entity {
 		if(!IsEntityOnFloor(hitbox, lvlData))
 			inAir = true;		
 	}
-
 }
