@@ -24,6 +24,45 @@ public class ObjectManager {
 		
 	}
 	
+	public void checkObjectThouched(Rectangle2D.Float hitbox) {
+		
+		for(Potion p : potions)
+			if(p.isActive()) {
+				if(hitbox.intersects(p.getHitbox())) {
+					p.setActive(false);
+					applyEffectToPlayer(p);
+				}
+			}
+		
+	}
+	
+	public void applyEffectToPlayer(Potion p) {
+		
+		if(p.getObjType() == RED_POTION)
+			playing.getPlayer().changeHealth(RED_POTION_VALUE);
+		else
+			playing.getPlayer().changePower(BLUE_POTION_VALUE);
+		
+	}
+	
+	public void checkObjectHit(Rectangle2D.Float attackbox) {
+		
+		for(GameContainer gc : containers)
+			if(gc.isActive()) {
+				if(gc.getHitbox().intersects(attackbox)) {
+					gc.setAnimation(true);
+					int type = 0;
+					if(gc.getObjType() == BARREL)
+						type = 1;
+					potions.add(new Potion((int)(gc.getHitbox().x + gc.getHitbox().width / 2),
+							(int)(gc.getHitbox().y + gc.getHitbox().height / 4),
+							type));
+					return; 
+				}
+			}
+		
+	}
+	
 	public void loadObjects(Level newLevel) {
 		
 		potions = newLevel.getPotions();
