@@ -55,7 +55,7 @@ public class ObjectManager {
 					if(gc.getObjType() == BARREL)
 						type = 1;
 					potions.add(new Potion((int)(gc.getHitbox().x + gc.getHitbox().width / 2),
-							(int)(gc.getHitbox().y + gc.getHitbox().height / 4),
+							(int)(gc.getHitbox().y - gc.getHitbox().height / 2),
 							type));
 					return; 
 				}
