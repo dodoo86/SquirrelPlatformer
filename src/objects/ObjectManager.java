@@ -18,16 +18,17 @@ public class ObjectManager {
 	private ArrayList<GameContainer> containers;
 
 	public ObjectManager(Playing playing) {
+		
 		this.playing = playing;
 		loadImgs();
 		
-		potions = new ArrayList<>();
-		potions.add(new Potion(300, 300, RED_POTION));
-		potions.add(new Potion(400, 300, BLUE_POTION));
+	}
+	
+	public void loadObjects(Level newLevel) {
 		
-		containers = new ArrayList<>();
-		containers.add(new GameContainer(500, 300, BARREL));
-		containers.add(new GameContainer(600, 300, BOX));
+		potions = newLevel.getPotions();
+		containers = newLevel.getGameContainers();
+		
 	}
 
 	private void loadImgs() {
