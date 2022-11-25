@@ -159,7 +159,7 @@ public class ObjectManager {
 			c.update();
 		}
 	}
-	
+	//sanyi
 	private void shootCannon(Cannon c) {
 		c.setAnimation(true);
 
