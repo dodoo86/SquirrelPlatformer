@@ -34,7 +34,6 @@ public class GameObject {
 					doAnimation = false;
 					active = false;
 				} else if (objType == CANNON_LEFT || objType == CANNON_RIGHT)
-					System.out.println("FIIRREEEE");
 					doAnimation = false;
 			}
 		}

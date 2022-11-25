@@ -194,7 +194,7 @@ public class Playing extends State implements Statemethods{
 	
 	public void checkPotionTouched(Rectangle2D.Float hitbox) {
 		
-		objectManager.checkObjectTouched(hitbox);
+		objectManager.checkObjectThouched(hitbox);
 		
 	}
 	
