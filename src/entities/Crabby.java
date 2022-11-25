@@ -3,7 +3,7 @@ package entities;
 import static utilz.Constants.Directions.LEFT;
 
 import static utilz.Constants.EnemyConstants.*;
-import static utilz.HelpMethods.CanMovehere;
+import static utilz.HelpMethods.CanMoveHere;
 import static utilz.HelpMethods.GetEntityYPosUnderRoofOrAboveFloor;
 import static utilz.HelpMethods.IsEntityOnFloor;
 import static utilz.HelpMethods.IsFloor;
