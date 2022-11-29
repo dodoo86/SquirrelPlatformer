@@ -13,6 +13,7 @@ import utilz.LoadSave;
 import static utilz.Constants.ObjectConstants.*;
 import static utilz.Constants.Projectiles.*;
 import static utilz.HelpMethods.CanCannonSeePlayer;
+import static utilz.HelpMethods.IsProjectileHittingLevel;
 
 public class ObjectManager {
 
@@ -134,11 +135,15 @@ public class ObjectManager {
 	}
 	
 	private void updateProjectiles(int[][] lvlData, Player player) {
-		
-		for(Projectile p : projectiles)
-			if(p.isActive())
+		for (Projectile p : projectiles)
+			if (p.isActive()) {
 				p.updatePos();
-		
+				if (p.getHitbox().intersects(player.gethitbox())) {
+					player.changeHealth(-25);
+					p.setActive(false);
+				} else if (IsProjectileHittingLevel(p, lvlData))
+					p.setActive(false);
+			}
 	}
 
 	private boolean isPlayerInRange(Cannon c, Player player) {
@@ -181,6 +186,7 @@ public class ObjectManager {
 		int dir = 1;
 		if(c.getObjType() == CANNON_LEFT)
 			dir = -1;
+		
 		projectiles.add(new Projectile((int)c.getHitbox().x, (int)c.getHitbox().y, dir));
 
 	}
