@@ -167,16 +167,16 @@ public class ObjectManager {
 					if (isPlayerInRange(c, player))
 						if (isPlayerInfrontOfCannon(c, player))
 							if (CanCannonSeePlayer(lvlData, player.gethitbox(), c.getHitbox(), c.getTileY())) {
-								shootCannon(c);
+								c.setAnimation(true);
 							}
 
 			c.update();
+			if(c.getAniIndex() == 4 && c.getAniTick() == 0)
+				shootCannon(c);
 		}
 	}
 	
-	private void shootCannon(Cannon c) {
-		
-		c.setAnimation(true);
+	private void shootCannon(Cannon c) {	
 		
 		int dir = 1;
 		if(c.getObjType() == CANNON_LEFT)

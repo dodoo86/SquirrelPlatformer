@@ -1,6 +1,9 @@
 package objects;
 
 import java.awt.geom.Rectangle2D;
+
+import main.Game;
+
 import static utilz.Constants.Projectiles.*;
 
 public class Projectile {
@@ -12,7 +15,14 @@ public class Projectile {
 	
 	public Projectile(int x, int y, int dir) {
 		
-		hitbox = new Rectangle2D.Float(x, y, CANNON_BALL_WIDTH, CANNON_BALL_HEIGHT);
+		int xOffset = (int) (-3 * Game.SCALE);
+		int yOffset = (int) ( 5 * Game.SCALE);
+		
+		if(dir == 1)
+			xOffset = (int) (29 * Game.SCALE);
+		
+		
+		hitbox = new Rectangle2D.Float(x + xOffset, y + yOffset, CANNON_BALL_WIDTH, CANNON_BALL_HEIGHT);
 		this.dir = dir;
 		
 	}
