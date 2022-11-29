@@ -36,6 +36,8 @@ public class LoadSave {
 	public static final String CONTAINER_ATLAS = "objects_sprites.png";
 	public static final String TRAP_ATLAS = "trap_atlas.png";
 	public static final String CANNON_ATLAS = "cannon_atlas.png";
+	public static final String CANNON_BALL = "ball.png";
+	
 	public static final String LVL_ONE = "lvl_one.png";
 	public static final String LVL_TWO = "lvl_two.png";
 	public static final String LVL_THREE = "lvl_three.png";
