@@ -17,6 +17,7 @@ public class LevelCompletedOverlay {
 	private BufferedImage img;
 	private int bgX, bgY, bgW, bgH;
 	
+	
 	public LevelCompletedOverlay(Playing playing) {
 		this.playing = playing;
 		initImg();
