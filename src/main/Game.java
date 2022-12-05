@@ -57,8 +57,11 @@ public class Game implements Runnable {
 	}
 
 	private void startGameLoop() {
+		
 		gameThread = new Thread(this);
 		gameThread.start();
+		
+		
 	}
 
 	public void update() {

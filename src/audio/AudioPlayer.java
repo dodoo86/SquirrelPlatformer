@@ -122,7 +122,7 @@ public class AudioPlayer {
 		
 	}
 	
-	private void playEffect(int effect) {
+	public void playEffect(int effect) {
 		
 		effects[effect].setMicrosecondPosition(0);
 		effects[effect].start();
