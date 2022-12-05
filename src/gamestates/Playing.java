@@ -227,9 +227,10 @@ public class Playing extends State implements Statemethods{
 	public void mousePressed(MouseEvent e) {
 		
 		if(!gameOver) {
-		if(e.getButton() == MouseEvent.BUTTON1) {
+		if(e.getButton() == MouseEvent.BUTTON1) 
 			player.setAttacking(true);
-			}
+		else if (e.getButton() == MouseEvent.BUTTON3)	
+			player.powerAttack();
 		if(paused)
 			pauseOverlay.mousePressed(e);
 		else if (lvlCompleted)

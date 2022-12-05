@@ -122,8 +122,15 @@ public class Player extends Entity {
 			checkPotionTouched();
 			checkSpikesTouched();
 			tileY = (int)(hitbox.y / Game.TILES_SIZE);
+			if(powerAttackActive) {
+				powerAttackTick++;
+				if(powerAttackTick >= 35) {
+					powerAttackTick = 0;
+					powerAttackActive = false;
+				}
+			}
 		}
-		if(attacking)
+		if(attacking || powerAttackActive)
 			checkAttack();
 		updateAnimationTick();
 		setAnimation();
@@ -147,6 +154,10 @@ public class Player extends Entity {
 		if(attackChecked || aniIndex != 1)
 			return;
 		attackChecked = true;
+		
+		if(powerAttackActive)
+			attackChecked = false;
+		
 		playing.checkEnemyHit(attackBox);
 		playing.checkObjectHit(attackBox);
 		playing.getGame().getAudioPlayer().playAttackSound();
@@ -155,9 +166,9 @@ public class Player extends Entity {
 
 	private void updateAttackBox() {
 		
-		if(right) {
+		if(right || powerAttackActive && flipW == 1) {
 			attackBox.x = hitbox.x + hitbox.width + (int)(Game.SCALE * 10);
-		}else if (left) {
+		}else if (left || powerAttackActive && flipW == -1) {
 			attackBox.x = hitbox.x - hitbox.width - (int)(Game.SCALE * 10);
 		}
 		attackBox.y = hitbox.y + (Game.SCALE * 10);
@@ -231,6 +242,13 @@ public class Player extends Entity {
 			else
 				state = FALLING;
 		}
+		
+		if(powerAttackActive) {
+			state = ATTACK;
+			aniIndex = 1;
+			aniTick = 0;
+			return;	
+		}
 
 		if (attacking) {
 			state = ATTACK;
@@ -258,6 +276,7 @@ public class Player extends Entity {
 		}
 
 		if(!inAir)
+			if(!powerAttackActive)
 			if((!left && !right) || (right && left)) 
 				return;
 			
@@ -274,11 +293,23 @@ public class Player extends Entity {
 			flipX = 0;
 			flipW = 1;
 		}
+		
+		if(powerAttackActive) {
+			if(!left && !right) {
+				if(flipW == -1)
+					xSpeed = -walkSpeed;
+				else 
+					xSpeed = walkSpeed;
+			}
+			
+			xSpeed *= 3;
+		}
+		
 		if(!inAir) 
 			if(!IsEntityOnFloor(hitbox, lvlData)) 
 				inAir = true;					
 		
-		if(inAir) {
+		if(inAir && !powerAttackActive) {
 			
 			if(CanMovehere(hitbox.x, hitbox.y + airSpeed, hitbox.width, hitbox.height, lvlData)) {
 				hitbox.y += airSpeed;
@@ -322,6 +353,10 @@ public class Player extends Entity {
 			hitbox.x += xSpeed;
 		} else {
 			hitbox.x = GetEntityXPosNextToWall(hitbox, xSpeed);
+			if(powerAttackActive) {
+				powerAttackActive = false;
+				powerAttackTick = 0;
+			}
 		}
 		
 	}
@@ -424,5 +459,16 @@ public class Player extends Entity {
 	
 	public int getTileY() {
 		return tileY;
+	}
+
+	public void powerAttack() {
+		
+		if(powerAttackActive)
+			return;
+		if(powerValue >= 60) {
+			powerAttackActive = true;
+			changePower(-60);
+		}
+		
 	}
 }
