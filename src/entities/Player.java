@@ -191,11 +191,15 @@ public class Player extends Entity {
 	}
 
 	private void drawUI(Graphics g) {
-		
+		//Background UI
 		g.drawImage(statusBarImg, statusBarX, statusBarY, statusBarWidth, statusBarHeight, null);
+		//HealthBar UI
 		g.setColor(Color.red);
 		g.fillRect(healthBarXStart + statusBarX, healthBarYStart + statusBarY, healthWidth, healthBarHeight);
 		
+		//PowerBar UI
+		g.setColor(Color.yellow);
+		g.fillRect(powerBarXStart + statusBarX,  powerBarYStart + statusBarY, powerWidth, powerBarHeight);
 	}
 
 	private void updateAnimationTick() {
