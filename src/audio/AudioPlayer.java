@@ -6,6 +6,7 @@ import java.util.Random;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.BooleanControl;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.LineUnavailableException;
@@ -79,6 +80,33 @@ public class AudioPlayer {
 		return null;	
 	}
 	
+	public void toggleSongMute() {
+		
+		this.songMute = !songMute;
+		for(Clip c : songs) {
+			BooleanControl booleanControl = (BooleanControl) c.getControl(BooleanControl.Type.MUTE);
+			booleanControl.setValue(songMute);
+		}
+		
+	}
+	
+	public void toggleEffectMute() {
+		
+		this.effectMute = !effectMute;
+		for(Clip c : effects) {
+			BooleanControl booleanControl = (BooleanControl) c.getControl(BooleanControl.Type.MUTE);
+			booleanControl.setValue(effectMute);
+		}
+		if(!effectMute)
+			playEffect(JUMP);
+		
+	}
+	
+	private void playEffect(int jUMP2) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	private void updateSongVolume() {
 		
 		FloatControl gainControl = (FloatControl) songs[currentSongId].getControl(FloatControl.Type.MASTER_GAIN);
