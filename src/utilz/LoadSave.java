@@ -1,22 +1,16 @@
 package utilz;
 
-import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
-import entities.Crabby;
-import main.Game;
-import static utilz.Constants.EnemyConstants.CRABBY;
-
 public class LoadSave {
-	
+
 	public static final String PLAYER_ATLAS = "player_sprites.png";
 	public static final String LEVEL_ATLAS = "outside_sprites.png";
 	public static final String MENU_BUTTONS = "button_atlas.png";
@@ -39,21 +33,27 @@ public class LoadSave {
 	public static final String CANNON_BALL = "ball.png";
 	public static final String DEATH_SCREEN = "death_screen.png";
 	public static final String OPTIONS_MENU = "options_background.png";
-	
-	public static final String LVL_ONE = "lvl_one.png";
-	public static final String LVL_TWO = "lvl_two.png";
-	public static final String LVL_THREE = "lvl_three.png";
+	public static final String PINKSTAR_ATLAS = "pinkstar_atlas.png";
+	public static final String QUESTION_ATLAS = "question_atlas.png";
+	public static final String EXCLAMATION_ATLAS = "exclamation_atlas.png";
+	public static final String SHARK_ATLAS = "shark_atlas.png";
+	public static final String CREDITS = "credits_list.png";
+	public static final String GRASS_ATLAS = "grass_atlas.png";
+	public static final String TREE_ONE_ATLAS = "tree_one_atlas.png";
+	public static final String TREE_TWO_ATLAS = "tree_two_atlas.png";
+	public static final String GAME_COMPLETED = "game_completed.png";
+	public static final String RAIN_PARTICLE = "rain_particle.png";
+	public static final String WATER_TOP = "water_atlas_animation.png";
+	public static final String WATER_BOTTOM = "water.png";
+	public static final String SHIP = "ship.png";
 
 	public static BufferedImage GetSpriteAtlas(String fileName) {
-		
 		BufferedImage img = null;
 		InputStream is = LoadSave.class.getResourceAsStream("/" + fileName);
-		
 		try {
 			img = ImageIO.read(is);
-			
+
 		} catch (IOException e) {
-			
 			e.printStackTrace();
 		} finally {
 			try {
@@ -64,20 +64,37 @@ public class LoadSave {
 		}
 		return img;
 	}
-	
+
 	public static BufferedImage[] GetAllLevels() {
-		
-		BufferedImage lvlOne =  GetSpriteAtlas(LVL_ONE);
-		BufferedImage lvlTwo = GetSpriteAtlas(LVL_TWO);
-		BufferedImage lvlThree = GetSpriteAtlas(LVL_THREE);
-		
-		BufferedImage[] imgs = new BufferedImage[3];
-		
-		imgs[0] = lvlOne;
-		imgs[1] = lvlTwo;
-		imgs[2] = lvlThree;
+		URL url = LoadSave.class.getResource("/lvls");
+		File file = null;
+
+		try {
+			file = new File(url.toURI());
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+
+		File[] files = file.listFiles();
+		File[] filesSorted = new File[files.length];
+
+		for (int i = 0; i < filesSorted.length; i++)
+			for (int j = 0; j < files.length; j++) {
+				if (files[j].getName().equals((i + 1) + ".png"))
+					filesSorted[i] = files[j];
+
+			}
+
+		BufferedImage[] imgs = new BufferedImage[filesSorted.length];
+
+		for (int i = 0; i < imgs.length; i++)
+			try {
+				imgs[i] = ImageIO.read(filesSorted[i]);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 
 		return imgs;
-		
 	}
+
 }
