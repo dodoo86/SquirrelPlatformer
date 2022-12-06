@@ -165,10 +165,16 @@ public class Player extends Entity {
 	}
 
 	private void updateAttackBox() {
-		
-		if(right || powerAttackActive && flipW == 1) {
+		if(right && left) {
+			if(flipW == 1) {
+				attackBox.x = hitbox.x + hitbox.width + (int)(Game.SCALE * 10);
+			}else {
+				attackBox.x = hitbox.x - hitbox.width - (int)(Game.SCALE * 10);
+			}
+			
+		} else if (right || powerAttackActive && flipW == 1) {
 			attackBox.x = hitbox.x + hitbox.width + (int)(Game.SCALE * 10);
-		}else if (left || powerAttackActive && flipW == -1) {
+		} else if (left || powerAttackActive && flipW == -1) {
 			attackBox.x = hitbox.x - hitbox.width - (int)(Game.SCALE * 10);
 		}
 		attackBox.y = hitbox.y + (Game.SCALE * 10);
@@ -196,7 +202,7 @@ public class Player extends Entity {
 		
 		g.drawImage(animations[state][aniIndex], (int) (hitbox.x - xDrawOffset) - lvlOffset + flipX, (int) (hitbox.y - yDrawOffset), width * flipW, height, null);
 		//drawHitbox(g , lvlOffset);
-		//drawAttackBox(g, lvlOffset);
+		drawAttackBox(g, lvlOffset);
 		drawUI(g);
 		
 	}
@@ -283,23 +289,23 @@ public class Player extends Entity {
 		
 		float xSpeed = 0;
 
-		if (left) {
+		if (left && !right) {
 			xSpeed -= walkSpeed;		
 			flipX = width;
 			flipW = -1;
 		}
-		if (right) {
+		if (right && !left) {
 			xSpeed += walkSpeed;	
 			flipX = 0;
 			flipW = 1;
 		}
 		
 		if(powerAttackActive) {
-			if(!left && !right) {
-				if(flipW == -1)
-					xSpeed = -walkSpeed;
-				else 
-					xSpeed = walkSpeed;
+			if((!left && !right) || (left && right)) {
+					if(flipW == -1)
+						xSpeed = -walkSpeed;
+					else 
+						xSpeed = walkSpeed;
 			}
 			
 			xSpeed *= 3;
