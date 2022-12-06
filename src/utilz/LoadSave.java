@@ -50,6 +50,8 @@ public class LoadSave {
 	public static final String LVL_ONE = "lvl_one.png";
 	public static final String LVL_TWO = "lvl_two.png";
 	public static final String LVL_THREE = "lvl_three.png";
+	public static final String LVL_FOUR = "lvl_four.png";
+	public static final String LVL_FIVE = "lvl_five.png";
 
 	public static BufferedImage GetSpriteAtlas(String fileName) {
 		
@@ -77,12 +79,16 @@ public class LoadSave {
 		BufferedImage lvlOne =  GetSpriteAtlas(LVL_ONE);
 		BufferedImage lvlTwo = GetSpriteAtlas(LVL_TWO);
 		BufferedImage lvlThree = GetSpriteAtlas(LVL_THREE);
+		BufferedImage lvlFour = GetSpriteAtlas(LVL_FOUR);
+		BufferedImage lvlFive = GetSpriteAtlas(LVL_FIVE);
 		
-		BufferedImage[] imgs = new BufferedImage[3];
+		BufferedImage[] imgs = new BufferedImage[5];
 		
 		imgs[0] = lvlOne;
 		imgs[1] = lvlTwo;
 		imgs[2] = lvlThree;
+		imgs[3] = lvlFour;
+		imgs[4] = lvlFive;
 
 		return imgs;
 		
