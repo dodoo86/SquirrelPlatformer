@@ -58,6 +58,7 @@ public class EnemyManager {
 		
 		for(Crabby c : crabbies)
 			if(c.isActive())
+				if(c.getcurrentHealth() > 0)
 			if(attackBox.intersects(c.gethitbox())) {
 				c.hurt(10);
 				return;
