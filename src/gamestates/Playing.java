@@ -40,8 +40,9 @@ public class Playing extends State implements Statemethods {
 	private boolean paused = false;
 
 	private int xLvlOffset;
-	private int leftBorder = (int) (0.25 * Game.GAME_WIDTH);
-	private int rightBorder = (int) (0.75 * Game.GAME_WIDTH);
+	//Change this so camera move sooner...
+	private int leftBorder = (int) (0.4 * Game.GAME_WIDTH);
+	private int rightBorder = (int) (0.4 * Game.GAME_WIDTH);
 	private int maxLvlOffsetX;
 
 	private BufferedImage backgroundImg, bigCloud, smallCloud, shipImgs[];
@@ -330,30 +331,38 @@ public class Playing extends State implements Statemethods {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		if (!gameOver) {
-			if (e.getButton() == MouseEvent.BUTTON1)
-				player.setAttacking(true);
-			else if (e.getButton() == MouseEvent.BUTTON3)
-				player.powerAttack();
-		}
+		
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if (!gameOver && !gameCompleted && !lvlCompleted)
 			switch (e.getKeyCode()) {
+			case KeyEvent.VK_W:
+				
+				player.setJump(true);
+				break;
 			case KeyEvent.VK_A:
 				player.setLeft(true);
 				break;
+			case KeyEvent.VK_S:
+				
+				break;
 			case KeyEvent.VK_D:
-
 				player.setRight(true);
 				break;
 			case KeyEvent.VK_SPACE:
 				player.setJump(true);
 				break;
-			case KeyEvent.VK_ESCAPE:
+			case KeyEvent.VK_ESCAPE :
 				paused = !paused;
+				break;
+			case KeyEvent.VK_ENTER:
+				player.setAttacking(true);
+				break;
+			case KeyEvent.VK_SHIFT:
+				player.powerAttack();
+				break;
 			}
 	}
 
@@ -361,14 +370,24 @@ public class Playing extends State implements Statemethods {
 	public void keyReleased(KeyEvent e) {
 		if (!gameOver && !gameCompleted && !lvlCompleted)
 			switch (e.getKeyCode()) {
+			case KeyEvent.VK_W:
+				player.setJump(false);
+				
+				break;
 			case KeyEvent.VK_A:
 				player.setLeft(false);
+				break;
+			case KeyEvent.VK_S:
+				
 				break;
 			case KeyEvent.VK_D:
 				player.setRight(false);
 				break;
 			case KeyEvent.VK_SPACE:
 				player.setJump(false);
+				break;
+			case KeyEvent.VK_ENTER:
+				player.setAttacking(false);
 				break;
 			}
 	}
@@ -381,27 +400,33 @@ public class Playing extends State implements Statemethods {
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		if (gameOver)
-			gameOverOverlay.mousePressed(e);
-		else if (paused)
+		
+		if(!gameOver) {
+		if(e.getButton() == MouseEvent.BUTTON1) 
+			player.setAttacking(true);
+		else if (e.getButton() == MouseEvent.BUTTON3)	
+			player.powerAttack();
+		if(paused)
 			pauseOverlay.mousePressed(e);
 		else if (lvlCompleted)
 			levelCompletedOverlay.mousePressed(e);
-		else if (gameCompleted)
-			gameCompletedOverlay.mousePressed(e);
+		} else {
+			gameOverOverlay.mousePressed(e);
+		}
 
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		if (gameOver)
-			gameOverOverlay.mouseReleased(e);
-		else if (paused)
+		
+		if(!gameOver) {
+		if(paused)
 			pauseOverlay.mouseReleased(e);
 		else if (lvlCompleted)
 			levelCompletedOverlay.mouseReleased(e);
-		else if (gameCompleted)
-			gameCompletedOverlay.mouseReleased(e);
+		} else {
+			gameOverOverlay.mouseReleased(e);
+		}
 	}
 
 	@Override

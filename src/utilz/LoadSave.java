@@ -47,13 +47,20 @@ public class LoadSave {
 	public static final String WATER_BOTTOM = "water.png";
 	public static final String SHIP = "ship.png";
 
+	public static final String LVL_ONE = "lvl_one.png";
+	public static final String LVL_TWO = "lvl_two.png";
+	public static final String LVL_THREE = "lvl_three.png";
+
 	public static BufferedImage GetSpriteAtlas(String fileName) {
+		
 		BufferedImage img = null;
 		InputStream is = LoadSave.class.getResourceAsStream("/" + fileName);
+		
 		try {
 			img = ImageIO.read(is);
-
+			
 		} catch (IOException e) {
+			
 			e.printStackTrace();
 		} finally {
 			try {
@@ -64,37 +71,20 @@ public class LoadSave {
 		}
 		return img;
 	}
-
+	
 	public static BufferedImage[] GetAllLevels() {
-		URL url = LoadSave.class.getResource("/lvls");
-		File file = null;
-
-		try {
-			file = new File(url.toURI());
-		} catch (URISyntaxException e) {
-			e.printStackTrace();
-		}
-
-		File[] files = file.listFiles();
-		File[] filesSorted = new File[files.length];
-
-		for (int i = 0; i < filesSorted.length; i++)
-			for (int j = 0; j < files.length; j++) {
-				if (files[j].getName().equals((i + 1) + ".png"))
-					filesSorted[i] = files[j];
-
-			}
-
-		BufferedImage[] imgs = new BufferedImage[filesSorted.length];
-
-		for (int i = 0; i < imgs.length; i++)
-			try {
-				imgs[i] = ImageIO.read(filesSorted[i]);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+		
+		BufferedImage lvlOne =  GetSpriteAtlas(LVL_ONE);
+		BufferedImage lvlTwo = GetSpriteAtlas(LVL_TWO);
+		BufferedImage lvlThree = GetSpriteAtlas(LVL_THREE);
+		
+		BufferedImage[] imgs = new BufferedImage[3];
+		
+		imgs[0] = lvlOne;
+		imgs[1] = lvlTwo;
+		imgs[2] = lvlThree;
 
 		return imgs;
+		
 	}
-
 }
